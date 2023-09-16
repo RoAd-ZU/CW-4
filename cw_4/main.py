@@ -5,9 +5,10 @@ from src.utils import Sorter
 def main():
     keyword = input(
         'Привет! Здесь вы можете получить список, в котором будут отбражены до 200 вакансий с платформ "HeadHunter" и "SuperJob" по ключевому слову, пожалуйста, введите ключевое слово\n')
-    salary_show = input('Если необходимо отобразить вакансии только с указанной заработной платой, введите цифру 1\n')
+    salary_show = input('Если необходимо отобразить вакансии только с указанной заработной платой, введите цифру 1, '
+                        'если в этом нет необходимости, оставьте окно пустым и нажмите "Enter"\n')
     class_HH = Get_api_HH(keyword.title(), salary_show)
-    class_SJ = Get_api_SJ(keyword.title(), salary_show)
+    class_SJ = Get_api_SJ(keyword.title(), not salary_show)
 
     vacancies_list = class_HH.get_datas()
     processes = Processes_vacancies_HH(vacancies_list)
