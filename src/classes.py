@@ -17,12 +17,9 @@ class Get_api_HH(Get_API):
     """Обращается к сайту HeadHunter и возвращает данные для парсинга по указанным критериям"""
     url = 'https://api.hh.ru/vacancies'
 
-    def __init__(self, keyword, salary_show):
+    def __init__(self, keyword, salary_show: bool):
         self.keyword = keyword
-        if salary_show == 1:
-            self.salary_show = True
-        else:
-            self.salary_show = False
+        self.salary_show = salary_show
         self.parametrs = {'per_page': 100,
                           'text': self.keyword,
                           'only_with_salary': self.salary_show,
@@ -40,14 +37,10 @@ class Get_api_SJ(Get_API):
     url = 'https://api.superjob.ru/2.0/vacancies/'
     api_key: str = os.getenv('API_SJ')
 
-    def __init__(self, keyword, salary_show):
+    def __init__(self, keyword, salary_show: bool):
         self.headers = {'X-Api-App-Id': self.api_key}
         self.keyword = keyword
         self.salary_show = salary_show
-        if self.salary_show == 1:
-            self.salary_show = False
-        else:
-            self.salary_show = True
         self.parametrs = {'count': 100,
                           'keyword': self.keyword,
                           'agreement': self.salary_show,
